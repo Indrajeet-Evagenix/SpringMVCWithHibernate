@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.springhibernate.model.Employee"
+		table="Employee1225">
+		<id name="id" type="int">
+			<column name="ID" />
+			<generator class="assigned" />
+		</id>
+		<property name="name" type="java.lang.String">
+			<column name="NAME" />
+		</property>
+		<property name="role" type="java.lang.String">
+			<column name="ROLE" />
+		</property>
+
+		<component name="address"
+			class="com.springhibernate.model.Address">
+			<property name="street" column="street_name" type="string" />
+			<property name="city" column="city_name" type="string" />
+			<property name="state" column="state_name" type="string" />
+			<property name="zipcode" column="zipcode" type="string" />
+		</component>
+
+		<joined-subclass
+			name="com.springhibernate.model.Contact" table="contact">
+			<key column="id"></key>
+			<property name="homeNumber" column="homeNumber"
+				type="string"></property>
+			<property name="selfNumber" column="selfNumber"
+				type="string"></property>
+		</joined-subclass>
+
+	</class>
+
+</hibernate-mapping>
+
